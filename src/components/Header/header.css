@@ -1,0 +1,9 @@
+.jumbotron {
+  display: flex;
+  justify-content: center;
+  opacity: 0.75;
+}
+
+.jumbotron h2 {
+  opacity: 1;
+}
