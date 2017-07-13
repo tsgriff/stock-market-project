@@ -4,15 +4,15 @@ import { connect } from 'react-redux';
 import './Home/home.css'
 
 class SearchInput extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       searchinput: '',
       stockInfo: undefined
     }
       this.handleSearch = this.handleSearch.bind(this);
       this.search = this.search.bind(this);
-    }
+  }
 
 handleSearch(event) {
   this.setState({
@@ -53,13 +53,8 @@ return (
       <button className="search-button" onClick={this.search}>Search</button>
       </div>
     </div>
-    <div className="stock-data">
-      <h4>{this.state.stockInfo ? "Symbol: " + this.state.stockInfo["01. Symbol"] : ''}</h4>
-      <h4>{this.state.stockInfo ? "Latest Price: " + this.state.stockInfo["03. Latest Price"] : ''}</h4>
-    </div>
   </section>
 );
-
   }
 }
 
