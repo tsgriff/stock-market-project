@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { getData } from '../ducks/data';
+import { getPastYear } from '../ducks/past-year';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import './Home/home.css'
 
 class SearchInput extends Component {
@@ -8,7 +10,8 @@ class SearchInput extends Component {
     super(props);
     this.state = {
       searchinput: '',
-      stockInfo: undefined
+      stockInfo: {},
+      pastYear: {}
     }
       this.handleSearch = this.handleSearch.bind(this);
       this.search = this.search.bind(this);
@@ -28,9 +31,13 @@ search(event) {
       this.setState({
         stockInfo: data.value
       })
-      console.log('DATA:', this.state.stockInfo)
     })
-     document.body.scroll = 1000;
+    this.props.getPastYear(this.state.searchinput).then((data) => {
+      this.setState({
+        pastYear: data.value
+      })
+      console.log('PAST_YEAR:', this.state.pastYear["2017-06-30"]["4. close"])
+    })
   }
 
   else {
@@ -58,11 +65,18 @@ return (
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    info: state.stockreducer.stockData,
-    loading: state.stockreducer.loading
-  }
+// function mapStateToProps(state) {
+//   return {
+//     info: state.stockreducer.stockData,
+//     pastYear: state.yearReducer.pastYear,
+//     loading: state.stockreducer.loading
+//   }
+// }
+//
+// export default connect(mapStateToProps, {getData, getPastYear})(SearchInput);
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({getData, getPastYear}, dispatch);
 }
 
-export default connect(mapStateToProps, {getData})(SearchInput);
+export default connect(null, mapDispatchToProps)(SearchInput);

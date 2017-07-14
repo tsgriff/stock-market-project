@@ -12,12 +12,15 @@
 }
 
 .current-data-contain {
-  height: 50vh;
+  height: 75vh;
   width: 60%;
   border: 1px white solid;
   border-radius: 10px;
   margin-bottom: 5vh;
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .current-data {
@@ -29,7 +32,11 @@
   text-align: center;
 }
 
-.past-week-contain {
+.current-data h3 {
+  text-decoration: underline;
+}
+
+.past-year-contain {
   height: 50vh;
   width: 60%;
   border: 1px white solid;
@@ -39,7 +46,7 @@
 
 }
 
-.past-week {
+.past-year {
   display: flex;
   justify-content: center;
   align-items: center;

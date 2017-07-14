@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
-import { getData } from '../../ducks/data';
+import { getPastYear } from '../../ducks/past-year';
 import { connect } from 'react-redux';
+// import Chart from '../chart';
 import './analytics.css';
 
 class Analytics extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      stockInfo: {}
-    }
+
+  this.state = {
+    past: {}
   }
+}
+
+render() {
+
+if (this.props.past["2017-06-30"] !== undefined) {
+  var pastDisplay = (<h1>{this.props.past["2017-06-30"]["4. close"]}</h1>)
+}
+
+else {
+   pastDisplay = null;
+}
 
 
-  render() {
-
-
-    return (
-        <section className="analytics">
+  return (
+      <section className="analytics">
 
           <div className="current-data-contain">
             <div className="current-data">
@@ -27,18 +36,21 @@ class Analytics extends Component {
               <h4>${this.props.info["03. Latest Price"]}</h4>
               <h3>Price Change Percentage</h3>
               <h4>{this.props.info["09. Price Change Percentage"]}</h4>
+              <h3>Volume</h3>
+              <h4>{this.props.info["10. Volume (Current Trading Day)"]}</h4>
             </div>
           </div>
 
-          <div className="past-week-contain">
-            <div className="past-week">
-              <h1>Past Week</h1>
+          <div className="past-year-contain">
+            <div className="past-year">
+              <h1>Past Year</h1>
+              {pastDisplay}
             </div>
           </div>
 
-        </section>
+      </section>
       );
-    }
+  }
 }
 
 
@@ -46,8 +58,9 @@ class Analytics extends Component {
   function mapStateToProps(state) {
     return {
       info: state.stockreducer.stockData,
+      past: state.yearReducer.pastYear,
       loading: state.stockreducer.loading
     }
   }
 
-  export default connect(mapStateToProps, {getData})(Analytics);
+  export default connect(mapStateToProps, {getPastYear})(Analytics);
