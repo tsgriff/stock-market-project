@@ -1,27 +1,17 @@
 import React, { Component } from 'react';
 import { getPastYear } from '../../ducks/past-year';
 import { connect } from 'react-redux';
-// import Chart from '../chart';
+import YearChart from './chart';
 import './analytics.css';
 
 class Analytics extends Component {
-  constructor(props) {
-    super(props);
 
-  this.state = {
-    past: {}
-  }
-}
 
 render() {
 
-if (this.props.past["2017-06-30"] !== undefined) {
-  var pastDisplay = (<h1>{this.props.past["2017-06-30"]["4. close"]}</h1>)
-}
-
-else {
-   pastDisplay = null;
-}
+  if (this.props.past["2017-06-30"] !== undefined) {
+    var yearChart = (<YearChart />)
+  }
 
 
   return (
@@ -44,7 +34,7 @@ else {
           <div className="past-year-contain">
             <div className="past-year">
               <h1>Past Year</h1>
-              {pastDisplay}
+              {yearChart}
             </div>
           </div>
 

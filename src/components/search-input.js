@@ -11,7 +11,17 @@ class SearchInput extends Component {
     this.state = {
       searchinput: '',
       stockInfo: {},
-      pastYear: {}
+      pastYear: {},
+      chartData: {
+        labels: [1,2,3,4,5,6,7,8,9,10,11,12],
+        datasets: [
+          {
+            label: 'Price',
+            data: [],
+            backgroundColor: ['green']
+          }
+        ]
+      }
     }
       this.handleSearch = this.handleSearch.bind(this);
       this.search = this.search.bind(this);
@@ -36,7 +46,6 @@ search(event) {
       this.setState({
         pastYear: data.value
       })
-      console.log('PAST_YEAR:', this.state.pastYear["2017-06-30"]["4. close"])
     })
   }
 
@@ -65,15 +74,6 @@ return (
   }
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     info: state.stockreducer.stockData,
-//     pastYear: state.yearReducer.pastYear,
-//     loading: state.stockreducer.loading
-//   }
-// }
-//
-// export default connect(mapStateToProps, {getData, getPastYear})(SearchInput);
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({getData, getPastYear}, dispatch);

@@ -5,7 +5,7 @@ const GET_YEARLY_PENDING = 'GET_YEARLY_PENDING';
 const GET_YEARLY_FULFILLED = 'GET_YEARLY_FULFILLED';
 
 const initialState = {
-  pastYear: {},
+  pastYear: [],
   loading: false
 }
 
