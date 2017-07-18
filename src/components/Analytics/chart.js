@@ -9,37 +9,45 @@ class YearChart extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      chartData: {
-        labels: [1],
-        datasets: [
-          {
-            label: 'Price',
-            data: [100],
-            backgroundColor: ['green']
-        }
-      ]
-    }
+    chartData: {}
   }
+}
+
+componentDidMount() {
+  this.getChartData();
+}
+
+getChartData() {
+
+  var yearObj = this.props.chart;
+  var yearArr = _.values(yearObj);
+  var priceArr = yearArr.slice(0, 12).map((data, i) => {
+    return parseInt(data["4. close"], 10);
+  }
+)
+
+var pastVals = priceArr.reverse();
+
+console.log(yearObj);
+
+  this.setState({
+    chartData: {
+      labels: ["Last Year","","","","","","","","","","","Current"],
+      datasets: [
+        {
+          label: 'Price',
+          data: pastVals,
+          backgroundColor: ['green']
+      }
+    ]
+  }
+  })
 }
 
 
   render() {
 
-  if (this.props.past["2017-06-30"] !== undefined) {
-    var yearObj = this.props.past;
-    var yearArr = _.values(yearObj);
-    var pastVals = yearArr.slice(0, 12).map((data, i) => {
-      return parseInt(data["4. close"], 10);
-  }
- )
- console.log(pastVals);
-}
-
-  else {
-     pastVals = null;
-  }
 
     return (
         <section className="chart">
@@ -47,10 +55,9 @@ class YearChart extends Component {
             <div className="chart-contain">
               <Line
               	data={this.state.chartData}
-              	options={{legend:{display: true, position: 'right'}}}
+              	options={{legend:{display: true, position: 'bottom'}}}
                 redraw
               />
-              {pastVals}
             </div>
 
         </section>
@@ -62,7 +69,8 @@ class YearChart extends Component {
   function mapStateToProps(state) {
     return {
       past: state.yearReducer.pastYear,
-      loading: state.stockreducer.loading
+      loading: state.stockreducer.loading,
+      chart: state.yearReducer.chartData
     }
   }
 
