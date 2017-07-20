@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Header from '../Header/header';
+import Footer from '../Footer/footer';
 import SearchInput from '../search-input';
 import Analytics from "../Analytics/analytics";
+import Algorithm from "../Algorithm/algorithm";
 import './home.css';
 
 class Home extends Component {
@@ -11,7 +13,7 @@ class Home extends Component {
 
 
     return (
-        <section>
+        <section className="main-contain">
           <div className="landing-page">
             <Header />
             <SearchInput />
@@ -19,6 +21,10 @@ class Home extends Component {
           <div className="analytics-contain">
             <Analytics />
           </div>
+          <div className="algorithm-contain">
+            <Algorithm />
+          </div>
+          <Footer />
         </section>
       );
     }

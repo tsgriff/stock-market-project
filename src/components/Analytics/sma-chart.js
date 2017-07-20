@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { getPastYear } from '../../ducks/past-year';
+import { getSimpleMovingAverage } from '../../ducks/simple-moving-average';
 import { connect } from 'react-redux';
 import {Line} from 'react-chartjs-2';
 import _ from 'lodash';
 
-class YearChart extends Component {
+class SMAChart extends Component {
 
 
   constructor(props) {
     super(props);
     this.state = {
-    chartData: {}
+    simpleMovingAverage: {}
   }
   this.getChartData = this.getChartData.bind(this)
 }
@@ -23,47 +23,46 @@ componentDidMount() {
 
 getChartData() {
 
-  var yearObj = this.props.chart;
-  var yearArr = _.values(yearObj);
-  var priceArr = yearArr.slice(0, 12).map((data, i) => {
-    return parseFloat(data["4. close"], 10);
+  var smaObj = this.props.yearlySMA;
+  var smaArr = _.values(smaObj);
+  var smaYearArr = smaArr.slice(0, 12).map((data, i) => {
+    return parseFloat(data["SMA"], 10);
   }
 )
 
-var pastVals = priceArr.reverse();
+var SMA = smaYearArr.reverse();
 
-  this.setState({
-    chartData: {
+this.setState({
+  chartData: {
       labels: ["Last Year","","","","","","","","","","","Current"],
       datasets: [
         {
-          label: 'Price',
-          data: pastVals,
-          backgroundColor: ['green']
+          label: 'Simple Moving Average',
+          data: SMA,
+          backgroundColor: ['blue']
       }
     ]
-  }
-  })
+  }})
 }
 
 // Refresh Chart with New API Data//
 
 componentWillReceiveProps(nextProps) {
-  var yearObj = nextProps.chart;
-  var yearArr = _.values(yearObj);
-  var priceArr = yearArr.slice(0, 12).map((data, i) => {
-    return parseFloat(data["4. close"], 10);
+  var smaObj = nextProps.yearlySMA;
+  var smaArr = _.values(smaObj);
+  var smaYearArr = smaArr.slice(0, 12).map((data, i) => {
+    return parseFloat(data["SMA"], 10);
   }
 )
-var pastVals = priceArr.reverse();
+var SMA = smaYearArr.reverse();
   this.setState({
     chartData: {
         labels: ["Last Year","","","","","","","","","","","Current"],
         datasets: [
           {
-            label: 'Price',
-            data: pastVals,
-            backgroundColor: ['green']
+            label: 'Simple Moving Average',
+            data: SMA,
+            backgroundColor: ['blue']
         }
       ]
     }})
@@ -83,7 +82,7 @@ var pastVals = priceArr.reverse();
                 width={550}
 	              height={300}
               	data={this.state.chartData}
-              	options={{title:{display:true, text:"Closing Prices of Each Month for the Past Year", fontSize: 25}, legend:{display: true, position: 'bottom'}}}
+              	options={{title:{display:true, text:"Simple Moving Average of Each Month for the Past Year", fontSize: 25}, legend:{display: true, position: 'bottom'}}}
                 redraw
               />
             </div>
@@ -97,8 +96,8 @@ var pastVals = priceArr.reverse();
   function mapStateToProps(state) {
     return {
       loading: state.stockreducer.loading,
-      chart: state.yearReducer.chartData
+      yearlySMA: state.SMAReducer.simpleMovingAverage
     }
   }
 
-  export default connect(mapStateToProps, {getPastYear})(YearChart);
+  export default connect(mapStateToProps, {getSimpleMovingAverage})(SMAChart);
