@@ -26,16 +26,17 @@ handleSearch(event) {
 search(event) {
   event.preventDefault();
 
+
   if (this.state.searchinput) {
     this.props.getData(this.state.searchinput).then((data) => {
       this.setState({
         stockInfo: data.value
       })
     })
+
     this.props.getPastYear(this.state.searchinput).then((data) => {
       this.setState({
-        pastYear: data.value,
-        searchinput: ''
+        pastYear: data.value
       })
     })
   }
@@ -55,6 +56,7 @@ return (
     <div className="search-input">
       <h4 className="page-header">Search for a Company:</h4>
       <input
+      value={this.state.searchinput}
       onChange={this.handleSearch}
       placeholder="Enter company symbol" />
       <button className="search-button" onClick={this.search}>Search</button>

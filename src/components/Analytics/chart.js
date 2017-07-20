@@ -12,7 +12,10 @@ class YearChart extends Component {
     this.state = {
     chartData: {}
   }
+  this.getChartData = this.getChartData.bind(this)
 }
+
+// Get API Data //
 
 componentDidMount() {
   this.getChartData();
@@ -23,13 +26,11 @@ getChartData() {
   var yearObj = this.props.chart;
   var yearArr = _.values(yearObj);
   var priceArr = yearArr.slice(0, 12).map((data, i) => {
-    return parseInt(data["4. close"], 10);
+    return parseFloat(data["4. close"], 10);
   }
 )
 
 var pastVals = priceArr.reverse();
-
-console.log(yearObj);
 
   this.setState({
     chartData: {
@@ -45,6 +46,31 @@ console.log(yearObj);
   })
 }
 
+// Refresh Chart with New API Data//
+
+componentWillReceiveProps(nextProps) {
+  var yearObj = nextProps.chart;
+  var yearArr = _.values(yearObj);
+  var priceArr = yearArr.slice(0, 12).map((data, i) => {
+    return parseFloat(data["4. close"], 10);
+  }
+)
+var pastVals = priceArr.reverse();
+  this.setState({
+    chartData: {
+        labels: ["Last Year","","","","","","","","","","","Current"],
+        datasets: [
+          {
+            label: 'Price',
+            data: pastVals,
+            backgroundColor: ['green']
+        }
+      ]
+    }})
+}
+
+
+// Render JSX to the DOM //
 
   render() {
 
@@ -54,8 +80,10 @@ console.log(yearObj);
 
             <div className="chart-contain">
               <Line
+                width={375}
+	              height={250}
               	data={this.state.chartData}
-              	options={{legend:{display: true, position: 'bottom'}}}
+              	options={{title:{display:true, text:"Closing Prices of Each Month for the Past Year", fontSize:20}, legend:{display: true, position: 'bottom'}}}
                 redraw
               />
             </div>
@@ -68,7 +96,6 @@ console.log(yearObj);
 
   function mapStateToProps(state) {
     return {
-      past: state.yearReducer.pastYear,
       loading: state.stockreducer.loading,
       chart: state.yearReducer.chartData
     }
