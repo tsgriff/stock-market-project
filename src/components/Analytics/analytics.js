@@ -33,10 +33,13 @@ render() {
 
           <div className="past-year-contain">
             <div className="past-year">
-              <h1>Past Year</h1>
-              {yearChart}
+              <h1>Analysis</h1>
+              <h4>Yearly Momentum</h4>
+              <div className="yearly-price-chart">{yearChart}</div>
+              <div className="SMA-chart"></div>
             </div>
           </div>
+
 
       </section>
       );

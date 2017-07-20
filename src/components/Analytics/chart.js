@@ -9,48 +9,83 @@ class YearChart extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      chartData: {
-        labels: [1],
+    chartData: {}
+  }
+  this.getChartData = this.getChartData.bind(this)
+}
+
+// Get API Data //
+
+componentDidMount() {
+  this.getChartData();
+}
+
+getChartData() {
+
+  var yearObj = this.props.chart;
+  var yearArr = _.values(yearObj);
+  var priceArr = yearArr.slice(0, 12).map((data, i) => {
+    return parseFloat(data["4. close"], 10);
+  }
+)
+
+var pastVals = priceArr.reverse();
+
+  this.setState({
+    chartData: {
+      labels: ["Last Year","","","","","","","","","","","Current"],
+      datasets: [
+        {
+          label: 'Price',
+          data: pastVals,
+          backgroundColor: ['green']
+      }
+    ]
+  }
+  })
+}
+
+// Refresh Chart with New API Data//
+
+componentWillReceiveProps(nextProps) {
+  var yearObj = nextProps.chart;
+  var yearArr = _.values(yearObj);
+  var priceArr = yearArr.slice(0, 12).map((data, i) => {
+    return parseFloat(data["4. close"], 10);
+  }
+)
+var pastVals = priceArr.reverse();
+  this.setState({
+    chartData: {
+        labels: ["Last Year","","","","","","","","","","","Current"],
         datasets: [
           {
             label: 'Price',
-            data: [100],
+            data: pastVals,
             backgroundColor: ['green']
         }
       ]
-    }
-  }
+    }})
 }
 
+
+// Render JSX to the DOM //
 
   render() {
 
-  if (this.props.past["2017-06-30"] !== undefined) {
-    var yearObj = this.props.past;
-    var yearArr = _.values(yearObj);
-    var pastVals = yearArr.slice(0, 12).map((data, i) => {
-      return parseInt(data["4. close"], 10);
-  }
- )
- console.log(pastVals);
-}
-
-  else {
-     pastVals = null;
-  }
 
     return (
         <section className="chart">
 
             <div className="chart-contain">
               <Line
+                width={375}
+	              height={250}
               	data={this.state.chartData}
-              	options={{legend:{display: true, position: 'right'}}}
+              	options={{title:{display:true, text:"Closing Prices of Each Month for the Past Year", fontSize:20}, legend:{display: true, position: 'bottom'}}}
                 redraw
               />
-              {pastVals}
             </div>
 
         </section>
@@ -61,8 +96,8 @@ class YearChart extends Component {
 
   function mapStateToProps(state) {
     return {
-      past: state.yearReducer.pastYear,
-      loading: state.stockreducer.loading
+      loading: state.stockreducer.loading,
+      chart: state.yearReducer.chartData
     }
   }
 

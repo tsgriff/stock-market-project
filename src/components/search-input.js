@@ -11,17 +11,7 @@ class SearchInput extends Component {
     this.state = {
       searchinput: '',
       stockInfo: {},
-      pastYear: {},
-      chartData: {
-        labels: [1,2,3,4,5,6,7,8,9,10,11,12],
-        datasets: [
-          {
-            label: 'Price',
-            data: [],
-            backgroundColor: ['green']
-          }
-        ]
-      }
+      pastYear: {}
     }
       this.handleSearch = this.handleSearch.bind(this);
       this.search = this.search.bind(this);
@@ -36,12 +26,14 @@ handleSearch(event) {
 search(event) {
   event.preventDefault();
 
+
   if (this.state.searchinput) {
     this.props.getData(this.state.searchinput).then((data) => {
       this.setState({
         stockInfo: data.value
       })
     })
+
     this.props.getPastYear(this.state.searchinput).then((data) => {
       this.setState({
         pastYear: data.value
@@ -64,6 +56,7 @@ return (
     <div className="search-input">
       <h4 className="page-header">Search for a Company:</h4>
       <input
+      value={this.state.searchinput}
       onChange={this.handleSearch}
       placeholder="Enter company symbol" />
       <button className="search-button" onClick={this.search}>Search</button>

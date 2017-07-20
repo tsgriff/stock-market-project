@@ -6,6 +6,7 @@ const GET_YEARLY_FULFILLED = 'GET_YEARLY_FULFILLED';
 
 const initialState = {
   pastYear: [],
+  chartData: {},
   loading: false
 }
 
@@ -15,7 +16,7 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, {loading: true})
 
     case GET_YEARLY_FULFILLED:
-      return Object.assign({}, state, {loading: false, pastYear: action.payload})
+      return Object.assign({}, state, {loading: false, pastYear: action.payload, chartData: action.payload})
 
     default:
       return state

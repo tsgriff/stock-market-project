@@ -5,9 +5,10 @@ import {Provider} from 'react-redux';
 import store from './ducks/store';
 import Home from "./components/Home/home";
 
+
 ReactDOM.render(
 	<Provider store={store}>
-	<Home />
+		<Home />
 	</Provider>,
 	document.getElementById( 'root' )
 );

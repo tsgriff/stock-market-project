@@ -4,7 +4,7 @@
   align-content: space-between;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+  height: 275vh;
   background-image: url('http://altoday.com/wp-content/uploads/2016/02/stock-market.jpg');
   background-position: center;
   background-size: cover;
@@ -17,7 +17,7 @@
   border: 1px white solid;
   border-radius: 10px;
   margin-bottom: 5vh;
-  background-color: white;
+  background-color: rgba(255,255,255,0.85);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,13 +37,12 @@
 }
 
 .past-year-contain {
-  height: 50vh;
-  width: 60%;
+  height: 150vh;
+  width: 80%;
   border: 1px white solid;
   border-radius: 10px;
   margin-top: 5vh;
-  background-color: white;
-
+  background-color: rgba(255,255,255,0.85);
 }
 
 .past-year {
@@ -52,4 +51,15 @@
   align-items: center;
   flex-direction: column;
   margin-top: 10vh;
+  opacity: 1;
+}
+
+/* CHARTS */
+
+.yearly-price-chart {
+  margin-top: 8vh;
+}
+
+.SMA-chart {
+  margin-top: 8vh;
 }
