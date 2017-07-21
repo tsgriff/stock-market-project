@@ -82,7 +82,7 @@ var SMA = smaYearArr.reverse();
                 width={550}
 	              height={300}
               	data={this.state.chartData}
-              	options={{title:{display:true, text:"Simple Moving Average of Each Month for the Past Year", fontSize: 25}, legend:{display: true, position: 'bottom'}}}
+              	options={{title:{display:true, text:"Simple Moving Average of Each Month for the Past Year", fontSize: 20}, legend:{display: true, position: 'bottom'}}}
                 redraw
               />
             </div>

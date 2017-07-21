@@ -4,7 +4,7 @@
   align-content: space-between;
   flex-direction: column;
   align-items: center;
-  height: 290vh;
+  height: 370vh;
   background-image: url('http://altoday.com/wp-content/uploads/2016/02/stock-market.jpg');
   background-position: center;
   background-size: cover;
@@ -12,8 +12,8 @@
 }
 
 .current-data-contain {
-  height: 85vh;
-  width: 60%;
+  height: 150vh;
+  width: 80%;
   border: 1px white solid;
   border-radius: 10px;
   margin-bottom: 5vh;
@@ -33,7 +33,7 @@
 }
 
 .past-year-contain {
-  height: 150vh;
+  height: 160vh;
   width: 80%;
   border: 1px white solid;
   border-radius: 10px;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getData } from '../ducks/data';
 import { getPastYear } from '../ducks/past-year';
 import { getSimpleMovingAverage } from '../ducks/simple-moving-average';
+import { getRealTimeAverage } from '../ducks/real-time-average';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './Home/home.css'
@@ -46,6 +47,12 @@ search(event) {
       simpleMovingAverage: data.value
     })
   })
+
+  this.props.getRealTimeAverage(this.state.searchinput).then((data) => {
+    this.setState({
+      realTimeAverage: data.value
+    })
+  })
 }
 
   else {
@@ -75,7 +82,7 @@ return (
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({getData, getPastYear, getSimpleMovingAverage}, dispatch);
+  return bindActionCreators({getData, getPastYear, getSimpleMovingAverage, getRealTimeAverage}, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SearchInput);

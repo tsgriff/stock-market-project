@@ -6,6 +6,7 @@ const GET_SMA_FULFILLED = 'GET_SMA_FULFILLED';
 
 const initialState = {
   simpleMovingAverage: {},
+  realTimeAverage: {},
   loading: false
 }
 
@@ -15,7 +16,7 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, {loading: true})
 
     case GET_SMA_FULFILLED:
-      return Object.assign({}, state, {loading: false, simpleMovingAverage: action.payload})
+      return Object.assign({}, state, {loading: false, simpleMovingAverage: action.payload, realTimeAverage: action.payload})
 
     default:
       return state

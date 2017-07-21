@@ -83,7 +83,7 @@ var pastVals = priceArr.reverse();
                 width={550}
 	              height={300}
               	data={this.state.chartData}
-              	options={{title:{display:true, text:"Closing Prices of Each Month for the Past Year", fontSize: 25}, legend:{display: true, position: 'bottom'}}}
+              	options={{title:{display:true, text:"Closing Prices of Each Month for the Past Year", fontSize: 20}, legend:{display: true, position: 'bottom'}}}
                 redraw
               />
             </div>

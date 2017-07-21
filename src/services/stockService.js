@@ -17,3 +17,8 @@ export const getSimpleMovingAverage = function(symbol) {
   return axios.get(`${CORS}http://www.alphavantage.co/query?function=SMA&symbol=${symbol}&interval=monthly&time_period=10&series_type=close&apikey=${API_KEY}`)
   .then(res => {return res.data["Technical Analysis: SMA"]})
 }
+
+export const getRealTimeAverage = function(symbol) {
+  return axios.get(`${CORS}http://www.alphavantage.co/query?function=SMA&symbol=${symbol}&interval=1min&time_period=10&series_type=close&apikey=${API_KEY}`)
+  .then(res => {return res.data["Technical Analysis: SMA"]})
+}
