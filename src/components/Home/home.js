@@ -6,6 +6,7 @@ import Analytics from "../Analytics/analytics";
 import Algorithm from "../Algorithm/algorithm";
 import { getPastYear } from '../../ducks/past-year';
 import './home.css';
+import loader from './Wedges.svg';
 
 
 class Home extends Component {
@@ -18,8 +19,8 @@ class Home extends Component {
           var algorithm = (<Algorithm />)
       }
 
-      if (this.props.loading) {
-        return (<div className="loading-screen"><div className="loading-animation"></div></div>)
+      if (this.props.loading && this.props.secondLoading) {
+        return (<div className="loading-screen"><h1>Loading</h1><img src={loader} alt="" /></div>)
       }
 
 else {
@@ -46,7 +47,8 @@ else {
   function mapStateToProps(state) {
     return {
       info: state.stockreducer.stockData,
-      loading: state.SMAReducer.loading
+      loading: state.SMAReducer.loading,
+      secondLoading: state.yearReducer.loading
     }
   }
 

@@ -85,15 +85,15 @@ render() {
 
 
 if (this.state.price > this.state.average) {
-  var recommendation = (<div className="buy">BUYING</div>)
+  var recommendation = (<div className="buy"><h1>BUYING</h1></div>)
 }
 
 else if (this.state.price < this.state.average) {
-  recommendation = (<div className="sell">SELLING</div>)
+  recommendation = (<div className="sell"><h1>SELLING</h1></div>)
 }
 
 else if (this.state.price === this.state.average) {
-  recommendation = (<div className="hold">HOLDING</div>)
+  recommendation = (<div className="hold"><h1>HOLDING</h1></div>)
 }
 
 
