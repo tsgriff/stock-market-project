@@ -8,7 +8,12 @@ import SMAChart from './sma-chart';
 import BarGraph from './bar-graph';
 import './analytics.css';
 
+
 class Analytics extends Component {
+
+  componentDidMount() {
+    document.body.scrollTop = 675;
+  }
 
 
 render() {
@@ -28,16 +33,17 @@ render() {
 
   return (
       <section className="analytics">
-
           <div className="current-data-contain">
             <div className="current-data">
-              <h3>Current Trading Information For: {this.props.info["01. Symbol"]}</h3>
-              <h3>Latest Price</h3>
-              <h4>${parseFloat(this.props.info["03. Latest Price"], 10)}</h4>
-              <h3>Price Change Percentage</h3>
-              <h4>{this.props.info["09. Price Change Percentage"]}</h4>
-              <h3>Volume</h3>
-              <h4>{this.props.info["10. Volume (Current Trading Day)"]}</h4>
+              <h1 className="current-title-contain">Current Trading Information</h1>
+              <div className="current-data-items"><h3>Company Symbol</h3>
+              <h4>{this.props.info["01. Symbol"]}</h4></div>
+              <div className="current-data-items"><h3>Latest Price</h3>
+              <h4>${parseFloat(this.props.info["03. Latest Price"], 10)}</h4></div>
+              <div className="current-data-items"><h3>Price Change Percentage</h3>
+              <h4>{this.props.info["09. Price Change Percentage"]}</h4></div>
+              <div className="current-data-items"><h3>Volume</h3>
+              <h4>{this.props.info["10. Volume (Current Trading Day)"]}</h4></div>
               <div className="bar-graph">{barGraph}</div>
             </div>
           </div>
@@ -50,12 +56,10 @@ render() {
             </div>
           </div>
 
-
       </section>
       );
   }
 }
-
 
 
   function mapStateToProps(state) {

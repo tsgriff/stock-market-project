@@ -6,7 +6,6 @@ import _ from 'lodash';
 
 class YearChart extends Component {
 
-
   constructor(props) {
     super(props);
     this.state = {

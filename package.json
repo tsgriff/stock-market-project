@@ -12,15 +12,21 @@
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "react-scripts": "1.0.10",
+    "react-scrollable-anchor": "^0.4.2",
     "react-sparklines": "^1.6.0",
     "redux": "^3.7.1",
     "redux-promise": "^0.5.3",
-    "redux-promise-middleware": "^4.3.0"
+    "redux-promise-middleware": "^4.3.0",
+    "socket.io-client": "^2.0.3",
+    "websocket": "^1.0.24"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-socket-io": "^0.2.4"
   }
 }
