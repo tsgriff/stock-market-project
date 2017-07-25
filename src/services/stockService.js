@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {API_KEY} from '../server_config.js'
+import {API_KEY} from '../../server_config.js'
 
 const CORS = 'https://cors-anywhere.herokuapp.com/';
 
