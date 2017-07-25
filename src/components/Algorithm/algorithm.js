@@ -103,9 +103,9 @@ else if (this.state.price === this.state.average) {
 
         <div className="algorithm-div-contain">
           <div className="prediction">
-          <h1>Simple Prediction and Recommendation*</h1>
+          <h1>Simple Prediction and Recommendation</h1>
 
-          <h6>*Disclaimer: This is for demonstration purposes only and not meant to be an actual recommendation or accurately predict stock price behavior.</h6>
+          <h6>Disclaimer: This is for demonstration purposes only and not meant to be an actual recommendation or accurately predict stock price behavior.</h6>
 
           <div className="recommendation-contain"><h4>Consider: {recommendation} </h4></div>
 

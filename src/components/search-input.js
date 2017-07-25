@@ -28,7 +28,6 @@ handleSearch(event) {
 search(event) {
   event.preventDefault();
 
-
   if (this.state.searchinput) {
     this.props.getData(this.state.searchinput).then((data) => {
       this.setState({
@@ -67,7 +66,7 @@ return (
   <section className="search-input-contain">
   <div className="landing-background">
     <div className="search-input">
-      <h4 className="page-header">Search for a Company:</h4>
+      <h4 className="page-header">Search for a Company</h4>
       <input
       value={this.state.searchinput}
       onChange={this.handleSearch}

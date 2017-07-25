@@ -33,15 +33,12 @@ getGraphData() {
   let arr = _.values(obj);
   let newArr = parseFloat(arr[0].SMA, 10)
 
-  console.log(newArr, price);
-
-
   this.setState({
     chartData: {
       labels: ["SMA", "Price"],
       datasets: [
         {
-          label: "SMA",
+          label: "US Dollars",
           data: [newArr, price],
           backgroundColor: ['blue', 'green']
       }
@@ -66,15 +63,14 @@ componentWillReceiveProps(nextProps) {
       labels: ["SMA", "Price"],
       datasets: [
         {
-          label: "SMA",
+          label: "US Dollars",
           data: [newArr, price],
           backgroundColor: ['blue', 'green']
-      }
-    ]
-  }
-})
+        }
+      ]
+    }
+  })
 }
-
 
 
 // Render JSX to the DOM //

@@ -39,9 +39,9 @@ var pastVals = priceArr.reverse();
           label: 'Price',
           data: pastVals,
           backgroundColor: ['green']
-      }
-    ]
-  }
+        }
+      ]
+    }
   })
 }
 
@@ -54,18 +54,18 @@ componentWillReceiveProps(nextProps) {
     return parseFloat(data["4. close"], 10);
   }
 )
-var pastVals = priceArr.reverse();
-  this.setState({
-    chartData: {
-        labels: ["Last Year","","","","","","","","","","","Current"],
-        datasets: [
-          {
-            label: 'Price',
-            data: pastVals,
-            backgroundColor: ['green']
-        }
-      ]
-    }})
+  var pastVals = priceArr.reverse();
+    this.setState({
+      chartData: {
+          labels: ["Last Year","","","","","","","","","","","Current"],
+          datasets: [
+            {
+              label: 'Price',
+              data: pastVals,
+              backgroundColor: ['green']
+          }
+        ]
+  }})
 }
 
 
