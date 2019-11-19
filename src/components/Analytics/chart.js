@@ -22,7 +22,7 @@ componentDidMount() {
 
 getChartData() {
 
-  var yearObj = this.props.chart;
+  var yearObj = this.props.past;
   var yearArr = _.values(yearObj);
   var priceArr = yearArr.slice(0, 12).map((data, i) => {
     return parseFloat(data["4. close"], 10);
@@ -92,12 +92,4 @@ componentWillReceiveProps(nextProps) {
     }
   }
 
-
-  function mapStateToProps(state) {
-    return {
-      loading: state.stockreducer.loading,
-      chart: state.yearReducer.chartData
-    }
-  }
-
-  export default connect(mapStateToProps, {getPastYear})(YearChart);
+  export default YearChart;

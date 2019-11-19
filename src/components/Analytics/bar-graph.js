@@ -25,11 +25,11 @@ componentDidMount() {
 
 getGraphData() {
 
-  let yearObj = this.props.price;
+  let yearObj = this.props.info;
   let yearArr = _.values(yearObj);
   let price = parseFloat(yearArr["2"], 10)
 
-  let obj = this.props.currentAverage;
+  let obj = this.props.rtSMA;
   let arr = _.values(obj);
   let newArr = parseFloat(arr[0].SMA, 10)
 
@@ -47,7 +47,7 @@ getGraphData() {
 })
 }
 
-// Refresh Chart with New API Data//
+// Refresh Chart with New API Data //
 
 componentWillReceiveProps(nextProps) {
   let yearObj = nextProps.price;
@@ -97,13 +97,4 @@ componentWillReceiveProps(nextProps) {
   }
 
 
-  function mapStateToProps(state) {
-    return {
-      loading: state.avgReducer.loading,
-      currentAverage: state.avgReducer.realTimeAverage,
-      price: state.stockreducer.stockData,
-
-    }
-  }
-
-  export default connect(mapStateToProps, {getRealTimeAverage, getPastYear})(BarGraph);
+  export default BarGraph;
