@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import { getPastYear } from '../../ducks/past-year';
-import { getSimpleMovingAverage } from '../../ducks/simple-moving-average';
-import { getRealTimeAverage } from '../../ducks/real-time-average';
-import { connect } from 'react-redux';
 import YearChart from './chart';
 import SMAChart from './sma-chart';
 import BarGraph from './bar-graph';
@@ -17,7 +13,6 @@ class Analytics extends Component {
 
 
 render() {
-  // var smaChart = (<SMAChart />)
 
   return (
       <section className="analytics">
@@ -40,7 +35,7 @@ render() {
             <div className="past-year">
               <h1>Yearly Momentum</h1>
               <div className="yearly-price-chart"><YearChart {...this.props} /></div>
-              {/* <div className="SMA-chart">{smaChart}</div> */}
+              <div className="SMA-chart"><SMAChart {...this.props} /></div>
             </div>
           </div>
 

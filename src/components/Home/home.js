@@ -90,16 +90,18 @@ class Home extends Component {
             </div>
           </section>
         </div>
-        <div className="analytics-contain">
-          {this.state.doneFetching ?
-            <Analytics {...this.state} />
-            :
-            null
-          }
-        </div>
-        <div className="algorithm-contain">
-          {/* {algorithm} */}
-        </div>
+        { this.state.doneFetching ?
+          <div>
+            <div className="analytics-contain">
+              <Analytics {...this.state} />
+            </div>
+            <div className="algorithm-contain">
+              <Algorithm {...this.state} />
+            </div>
+          </div>
+          :
+          null
+        }
       </section>
     );
   }

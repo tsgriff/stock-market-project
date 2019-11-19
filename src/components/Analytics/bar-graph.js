@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { getRealTimeAverage } from '../../ducks/real-time-average';
-import { getPastYear } from '../../ducks/past-year';
-import { connect } from 'react-redux';
 import {Bar} from 'react-chartjs-2';
 import _ from 'lodash';
 
@@ -46,32 +43,6 @@ getGraphData() {
   }
 })
 }
-
-// Refresh Chart with New API Data //
-
-componentWillReceiveProps(nextProps) {
-  let yearObj = nextProps.price;
-  let yearArr = _.values(yearObj);
-  let price = parseFloat(yearArr["2"], 10)
-
-  let obj = nextProps.currentAverage;
-  let arr = _.values(obj);
-  let newArr = parseFloat(arr[0].SMA, 10)
-
-  this.setState({
-    chartData: {
-      labels: ["SMA", "Price"],
-      datasets: [
-        {
-          label: "US Dollars",
-          data: [newArr, price],
-          backgroundColor: ['blue', 'green']
-        }
-      ]
-    }
-  })
-}
-
 
 // Render JSX to the DOM //
 
